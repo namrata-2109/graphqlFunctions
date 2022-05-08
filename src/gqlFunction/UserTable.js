@@ -1,22 +1,83 @@
-import React, { useState } from 'react'
+
 import { API } from 'aws-amplify';
 import * as mutations from '../graphql/mutations'
 import * as queries from '../graphql/queries';
+import {userDetails, userByEmail, userBySupEmail,updatedData , deleteByEmail, deleteBySupEmail} from './userModel'
 
-export async function createNewUser(userDetails){
+// create instance of userDetails from userModel.js
+export const createNewUser = async () => {
     try {
         const createUserData = await API.graphql({ query: mutations.createUser, variables: { input: userDetails } })
         console.log("Response is ", createUserData.data.createUser);
     } catch (error) {
-        console.log("error is ", error);
+        console.log("error in creating ", error);
     }
 }
+
+// create instance of userByEmail from userModel.js
+ export const getUserByEmail = async () => {
+         try {
+             const userData = await API.graphql({ query: queries.getUser, variables: {email: userByEmail } });
+             console.log("User details by email", userData.data.getUser)
+         }
+         catch {
+             console.log("Error in getUser");
+         }
+     }
+
+// create instance of userBySupEmail from userModel.js
+     export const getUserBySupMail = async () => {
+         try {
+             const userSupData = await API.graphql({ query: queries.getUser, variables: {superviserEmail: userBySupEmail } });
+             console.log("User details by supervisor email", userSupData)
+         }
+         catch (error){
+             console.log("Error in getUser", error);
+         }
+     }
+//create instance of updatedData from userModel.js
+        export  const updateUser=async()=>{
+         try {
+             const updatedUser=await API.graphql({query:mutations.updateUser,variables:{input:updatedData}});
+             console.log("Update user is ",updatedUser.data.updateUser);
+         } catch (error) {
+             console.log("Error in updating ",error);
+         }
+     }
+//create instance of deleteByEmail from userModel.js
+  export const deleteUserByMail = async () => {
+               try {
+                   const deleteUser = await API.graphql({ query: mutations.deleteUser, variables: { input: deleteByEmail} });
+                   console.log("Deleted User is ", deleteUser.data.deleteUser);
+               } catch (error) {
+                   console.log("Error in deleting ", error);
+               }
+           }
+            //create instance of deleteBySupEmail from userModel.js
+ export const deleteUserBySupMail = async () => {
+       try {
+        const deleteTheUser = await API.graphql({ query: mutations.deleteUser, variables: { input: deleteBySupEmail} });
+        console.log("Deleted User is ", deleteTheUser.data.deleteUser);
+            } catch (error) {
+                console.log("Error in deleting ", error);
+            }
+         }
+
+
+
+
+
+
+
+
+
+           
 // export default function UserTable{
 
 //      const [mail, setMail] = useState(null)
-//     // const [name, setName] = useState(null)
+//      const [name, setName] = useState(null)
 //      const [superviserMail, setSuperviserMail] = useState(null)
-//     // const [admin, setAdmin] = useState(false)
+//      const [admin, setAdmin] = useState(false)
 //     const [deletionMail,setDeletionMail]=useState(null);
 //     const [updatedName,setUpdateName]=useState();
 
@@ -56,45 +117,14 @@ export async function createNewUser(userDetails){
 //             console.log("error is ", error);
 //         }
 //     }
-    
-//     const getUserByEmail = async () => {
-//         try {
-//             const userDetails = await API.graphql({ query: queries.getUser, variables: { email: 'namrata@gmail.com'} });
-//             console.log("User details are", userDetails.data.getUser)
-//         }
-//         catch {
-//             console.log("Error in getUser");
-//         }
-//     }
-//     const getUserBySupMail = async () => {
-//         try {
-//             const userDetails = await API.graphql({ query: queries.getUser, variables: {superviserEmail: 'gourab@gmail.com' } });
-//             console.log("User details are", userDetails)
-//         }
-//         catch (error){
-//             console.log("Error in getUser", error);
-//         }
-//     }
+ 
+
 //      const deleteByEmail = {
 //          email: deletionMail
 //      }
-//      const deleteTheUser = async () => {
-//         try {
-//             const deletedUser = await API.graphql({ query: mutations.deleteUser, variables: { input: deleteByEmail} });
-//             console.log("Deleted User is ", deletedUser.data.deleteUser);
-//         } catch (error) {
-//             console.log("Error in deleting ", error);
-//         }
-//     }
+
    
-//     const updateUser=async()=>{
-//         try {
-//             const updatedUser=await API.graphql({query:mutations.updateUser,variables:{input:updatedData}});
-//             console.log("Update user is ",updatedUser.data.updateUser);
-//         } catch (error) {
-//             console.log("Error is ",error);
-//         }
-//     }
+
 
 
 //     return (
