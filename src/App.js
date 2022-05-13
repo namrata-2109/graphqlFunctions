@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
 import UserTable from './gqlFunction/UserTable';
-import { createNewUser, getUserByEmail, deleteUserByMail, deleteUserBySupMail } from './gqlFunction/UserTable';
+import { createNewUser, getUserByEmail, deleteUserByMail, deleteUserBySupMail, updateUserInfo } from './gqlFunction/UserTable';
 
 function App() {
   const createUserData = {
-    email: "xyz@gmail.com",
-    name: "Namrata",
+    email: "pqr@gmail.com",
+    name: "pqr",
     isAdmin: false,
     phone: "8888888888",
-    superwiserEmail: "gourab121@gmail.com",
+    superwiserEmail: "gourab131@gmail.com",
     isApproved: true,
     isEmailApproved: true,
     isPhoneVerified: true,
@@ -24,12 +24,28 @@ function App() {
     superwiserEmail: "gourab@gmail.com"
   }
   const deleteEmail = {
-    email: "namrata@gmail.com"
+    email: "namrata@gmail.com",
+    _version: "1"
   }
   const deleteSuperMail = {
-    superwiserEmail: "gourab@gmail.com"
+    email: "namrata@gmail.com",
+    superwiserEmail: "gourab@gmail.com",
+    _version: "1"
   }
-  
+  const updateTheUser = {
+    email: "xyz@gmail.com",
+    name: "anuj",
+    isAdmin: false,
+    phone: "8888888888",
+    superwiserEmail: "gourab121@gmail.com",
+    isApproved: true,
+    isEmailApproved: true,
+    isPhoneVerified: true,
+    isGooleSignIn: true,
+    isFacebookSignIn: false,
+    isGeneralAuthSignIn: false
+  }
+
   return (
     <div className="App">
       <button onClick={() => createNewUser(createUserData)}>Create new user</button><br/><br/>
@@ -37,6 +53,7 @@ function App() {
       <button onClick={() => getUserByEmail(getDataViaSuper.superwiserEmail)}>Get user by supermail</button><br/><br/>
       <button onClick={() => deleteUserByMail(deleteEmail)}>Delete by email</button><br/><br/>
       <button onClick={() => deleteUserBySupMail(deleteSuperMail.superwiserEmail)}>Delete by supermail</button><br/><br/>
+      <button onClick={() => updateUserInfo(updateTheUser.email)}>Update User</button><br/><br/>
     </div>
   );
 }

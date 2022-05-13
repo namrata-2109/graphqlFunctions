@@ -14,6 +14,7 @@ import * as queries from '../graphql/queries';
          console.log("error in creating ", error);
      }
  }
+
 //create instance of Mail in App.js
 export const deleteUserByMail = async (Mail) => {
     try {
@@ -23,6 +24,7 @@ export const deleteUserByMail = async (Mail) => {
         console.log("Error in deleting ", error);
     }
 }
+
 //create instance of supEmail in App.js
 export const deleteUserBySupMail = async (supEmail) => {
     try {
@@ -36,13 +38,14 @@ export const deleteUserBySupMail = async (supEmail) => {
 
 export const getUserByEmail = async(userEmail) => {
     try {
-            const userData = await API.graphql({ query: queries.getUser, variables: {email: userEmail } });
+            const userData = await API.graphql({ query: queries.getUser, variables: {email: userEmail }});
             console.log("User details by email", userData.data.getUser)
     }
     catch {
            console.log("Error in getUser");
           }
 }
+
 // create instance of userSupEmail in App.js
       export const getUserBySupMail = async (userSupEmail) => {
           try {
@@ -55,11 +58,13 @@ export const getUserByEmail = async(userEmail) => {
       }
 
 // create instance of updatedData in App.js
-     export  const updateUser=async(updatedData)=>{
+     export  const updateUserInfo = async(email, updatedData)=>{
       try {
-          const updatedUser=await API.graphql({query:mutations.updateUser,variables:{input:updatedData}});
-          console.log("Update user is ",updatedUser.data.updateUser);
-      } catch (error) {
+          const getUpdateUser = await API.graphql({query:queries.getUser, variables:{input: email}})
+          console.log("Get user to update ",getUpdateUser.data.getUser)
+          const updatedUser=await API.graphql({query:mutations.updateUser,variables:{input:updatedData.getUpdateUser.email}});
+          console.log("Updated user is ",updatedUser.data.updateUser);
+      }catch (error) {
           console.log("Error in updating ",error);
       }
   }
