@@ -148,6 +148,16 @@ export const schema = {
                     }
                 },
                 {
+                    "type": "key",
+                    "properties": {
+                        "name": "bySuperwisedrID",
+                        "queryField": "userBySuperWisedID",
+                        "fields": [
+                            "superwiserEmail"
+                        ]
+                    }
+                },
+                {
                     "type": "auth",
                     "properties": {
                         "rules": [
@@ -254,6 +264,19 @@ export const schema = {
                         "associatedWith": "order"
                     }
                 },
+                "relatedWorkFlow": {
+                    "name": "relatedWorkFlow",
+                    "isArray": false,
+                    "type": {
+                        "model": "Workflow"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "workflowWorkflowOrdersId"
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -269,13 +292,6 @@ export const schema = {
                     "isRequired": false,
                     "attributes": [],
                     "isReadOnly": true
-                },
-                "workflowWorkflowOrdersId": {
-                    "name": "workflowWorkflowOrdersId",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
                 }
             },
             "syncable": true,
@@ -346,10 +362,11 @@ export const schema = {
                 },
                 "NextNodeName": {
                     "name": "NextNodeName",
-                    "isArray": false,
+                    "isArray": true,
                     "type": "String",
                     "isRequired": true,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": false
                 },
                 "TaskAssignedTo": {
                     "name": "TaskAssignedTo",
@@ -374,10 +391,11 @@ export const schema = {
                 },
                 "UserFilePathList": {
                     "name": "UserFilePathList",
-                    "isArray": false,
+                    "isArray": true,
                     "type": "String",
                     "isRequired": true,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": false
                 },
                 "AssignedTimeStamp": {
                     "name": "AssignedTimeStamp",
@@ -457,86 +475,6 @@ export const schema = {
                 }
             ]
         },
-        "UserNotifications": {
-            "name": "UserNotifications",
-            "fields": {
-                "id": {
-                    "name": "id",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "NotificationStatus": {
-                    "name": "NotificationStatus",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "NotificationContent": {
-                    "name": "NotificationContent",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "NotifyTime": {
-                    "name": "NotifyTime",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": true,
-                    "attributes": []
-                },
-                "createdAt": {
-                    "name": "createdAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "updatedAt": {
-                    "name": "updatedAt",
-                    "isArray": false,
-                    "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "userNotificationsId": {
-                    "name": "userNotificationsId",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": false,
-                    "attributes": []
-                }
-            },
-            "syncable": true,
-            "pluralName": "UserNotifications",
-            "attributes": [
-                {
-                    "type": "model",
-                    "properties": {}
-                },
-                {
-                    "type": "auth",
-                    "properties": {
-                        "rules": [
-                            {
-                                "allow": "public",
-                                "operations": [
-                                    "create",
-                                    "update",
-                                    "delete",
-                                    "read"
-                                ]
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
         "Workflow": {
             "name": "Workflow",
             "fields": {
@@ -589,12 +527,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "Details": {
-                    "name": "Details",
-                    "isArray": false,
+                "WorkFlowDescription": {
+                    "name": "WorkFlowDescription",
+                    "isArray": true,
                     "type": "String",
                     "isRequired": true,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": false
                 },
                 "CreatedBy": {
                     "name": "CreatedBy",
@@ -686,10 +625,11 @@ export const schema = {
                 },
                 "NextNodeName": {
                     "name": "NextNodeName",
-                    "isArray": false,
+                    "isArray": true,
                     "type": "String",
                     "isRequired": true,
-                    "attributes": []
+                    "attributes": [],
+                    "isArrayNullable": false
                 },
                 "Description": {
                     "name": "Description",
@@ -724,6 +664,92 @@ export const schema = {
             },
             "syncable": true,
             "pluralName": "WorkflowDefinitions",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "operations": [
+                                    "create",
+                                    "update",
+                                    "delete",
+                                    "read"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "UserNotifications": {
+            "name": "UserNotifications",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "connectedUser": {
+                    "name": "connectedUser",
+                    "isArray": false,
+                    "type": {
+                        "model": "User"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "userNotificationsId"
+                    }
+                },
+                "NotificationStatus": {
+                    "name": "NotificationStatus",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "NotificationContent": {
+                    "name": "NotificationContent",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "NotifyTime": {
+                    "name": "NotifyTime",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "UserNotifications",
             "attributes": [
                 {
                     "type": "model",
@@ -832,5 +858,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "38ef0fc0e389c48616a68813bda484de"
+    "version": "7075a683482387132aaaa0335c09ab97"
 };

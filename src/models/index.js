@@ -17,15 +17,15 @@ const TaskStatusEnum = {
   "TASK_TO_START": "TASK_TO_START"
 };
 
-const { User, Order, OrderTask, UserNotifications, Workflow, WorkflowDefinition, UserOrderMapping } = initSchema(schema);
+const { User, Order, OrderTask, Workflow, WorkflowDefinition, UserNotifications, UserOrderMapping } = initSchema(schema);
 
 export {
   User,
   Order,
   OrderTask,
-  UserNotifications,
   Workflow,
   WorkflowDefinition,
+  UserNotifications,
   UserOrderMapping,
   CurrentStatusEnum,
   TaskStatusEnum
