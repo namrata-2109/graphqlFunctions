@@ -5,8 +5,8 @@ import { createNewUser, getUserByEmail, deleteUserByMail, deleteUserBySupMail, u
 
 function App() {
   const createUserData = {
-    email: "pqr@gmail.com",
-    name: "pqr",
+    email: "neil@gmail.com",
+    name: "Neil",
     isAdmin: false,
     phone: "8888888888",
     superwiserEmail: "gourab131@gmail.com",
@@ -24,7 +24,7 @@ function App() {
     superwiserEmail: "gourab@gmail.com"
   }
   const deleteEmail = {
-    email: "namrata@gmail.com",
+    email: "pqr@gmail.com",
     _version: "1"
   }
   const deleteSuperMail = {
@@ -35,15 +35,8 @@ function App() {
   const updateTheUser = {
     email: "xyz@gmail.com",
     name: "anuj",
-    isAdmin: false,
-    phone: "8888888888",
-    superwiserEmail: "gourab121@gmail.com",
-    isApproved: true,
-    isEmailApproved: true,
-    isPhoneVerified: true,
-    isGooleSignIn: true,
-    isFacebookSignIn: false,
-    isGeneralAuthSignIn: false
+    isAdmin: true,
+    _version: "9"
   }
 
   return (
@@ -53,7 +46,8 @@ function App() {
       <button onClick={() => getUserByEmail(getDataViaSuper.superwiserEmail)}>Get user by supermail</button><br/><br/>
       <button onClick={() => deleteUserByMail(deleteEmail)}>Delete by email</button><br/><br/>
       <button onClick={() => deleteUserBySupMail(deleteSuperMail.superwiserEmail)}>Delete by supermail</button><br/><br/>
-      <button onClick={() => updateUserInfo(updateTheUser.email)}>Update User</button><br/><br/>
+      
+      <button onClick={() => updateUserInfo(updateTheUser)}>Update User</button><br/><br/>
     </div>
   );
 }

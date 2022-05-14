@@ -58,11 +58,12 @@ export const getUserByEmail = async(userEmail) => {
       }
 
 // create instance of updatedData in App.js
-     export  const updateUserInfo = async(email, updatedData)=>{
+     export  const updateUserInfo = async(user)=>{
       try {
-          const getUpdateUser = await API.graphql({query:queries.getUser, variables:{input: email}})
+        console.log("Get user to update ")
+          const getUpdateUser = await API.graphql({query:queries.getUser, variables:{email: user.email}})
           console.log("Get user to update ",getUpdateUser.data.getUser)
-          const updatedUser=await API.graphql({query:mutations.updateUser,variables:{input:updatedData.getUpdateUser.email}});
+          const updatedUser=await API.graphql({query:mutations.updateUser,variables:{input: user}});
           console.log("Updated user is ",updatedUser.data.updateUser);
       }catch (error) {
           console.log("Error in updating ",error);
