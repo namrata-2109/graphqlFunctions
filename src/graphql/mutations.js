@@ -121,6 +121,18 @@ export const createOrder = /* GraphQL */ `
         nextToken
         startedAt
       }
+      relatedWorkFlow {
+        workflowName
+        WorkFlowJSON
+        WorkFlowDescription
+        CreatedBy
+        OwnedBy
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
@@ -151,6 +163,18 @@ export const updateOrder = /* GraphQL */ `
         nextToken
         startedAt
       }
+      relatedWorkFlow {
+        workflowName
+        WorkFlowJSON
+        WorkFlowDescription
+        CreatedBy
+        OwnedBy
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
@@ -180,6 +204,18 @@ export const deleteOrder = /* GraphQL */ `
       users {
         nextToken
         startedAt
+      }
+      relatedWorkFlow {
+        workflowName
+        WorkFlowJSON
+        WorkFlowDescription
+        CreatedBy
+        OwnedBy
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       createdAt
       updatedAt
@@ -284,7 +320,7 @@ export const createWorkflow = /* GraphQL */ `
         startedAt
       }
       WorkFlowJSON
-      Details
+      WorkFlowDescription
       CreatedBy
       OwnedBy
       createdAt
@@ -311,7 +347,7 @@ export const updateWorkflow = /* GraphQL */ `
         startedAt
       }
       WorkFlowJSON
-      Details
+      WorkFlowDescription
       CreatedBy
       OwnedBy
       createdAt
@@ -338,7 +374,7 @@ export const deleteWorkflow = /* GraphQL */ `
         startedAt
       }
       WorkFlowJSON
-      Details
+      WorkFlowDescription
       CreatedBy
       OwnedBy
       createdAt
@@ -355,10 +391,11 @@ export const createWorkflowDefinition = /* GraphQL */ `
     $condition: ModelWorkflowDefinitionConditionInput
   ) {
     createWorkflowDefinition(input: $input, condition: $condition) {
-      WorkflowDefinitionID
+      workflowdefinitionid
       NodeName
       NextNodeName
       Description
+      WorkFlowName
       id
       createdAt
       updatedAt
@@ -375,10 +412,11 @@ export const updateWorkflowDefinition = /* GraphQL */ `
     $condition: ModelWorkflowDefinitionConditionInput
   ) {
     updateWorkflowDefinition(input: $input, condition: $condition) {
-      WorkflowDefinitionID
+      workflowdefinitionid
       NodeName
       NextNodeName
       Description
+      WorkFlowName
       id
       createdAt
       updatedAt
@@ -395,10 +433,11 @@ export const deleteWorkflowDefinition = /* GraphQL */ `
     $condition: ModelWorkflowDefinitionConditionInput
   ) {
     deleteWorkflowDefinition(input: $input, condition: $condition) {
-      WorkflowDefinitionID
+      workflowdefinitionid
       NodeName
       NextNodeName
       Description
+      WorkFlowName
       id
       createdAt
       updatedAt
@@ -415,6 +454,24 @@ export const createUserNotifications = /* GraphQL */ `
     $condition: ModelUserNotificationsConditionInput
   ) {
     createUserNotifications(input: $input, condition: $condition) {
+      connectedUser {
+        email
+        name
+        isAdmin
+        phone
+        superwiserEmail
+        isApproved
+        isEmailApproved
+        isPhoneVerified
+        isGooleSignIn
+        isFacebookSignIn
+        isGeneralAuthSignIn
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       NotificationStatus
       NotificationContent
       NotifyTime
@@ -434,6 +491,24 @@ export const updateUserNotifications = /* GraphQL */ `
     $condition: ModelUserNotificationsConditionInput
   ) {
     updateUserNotifications(input: $input, condition: $condition) {
+      connectedUser {
+        email
+        name
+        isAdmin
+        phone
+        superwiserEmail
+        isApproved
+        isEmailApproved
+        isPhoneVerified
+        isGooleSignIn
+        isFacebookSignIn
+        isGeneralAuthSignIn
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       NotificationStatus
       NotificationContent
       NotifyTime
@@ -453,6 +528,24 @@ export const deleteUserNotifications = /* GraphQL */ `
     $condition: ModelUserNotificationsConditionInput
   ) {
     deleteUserNotifications(input: $input, condition: $condition) {
+      connectedUser {
+        email
+        name
+        isAdmin
+        phone
+        superwiserEmail
+        isApproved
+        isEmailApproved
+        isPhoneVerified
+        isGooleSignIn
+        isFacebookSignIn
+        isGeneralAuthSignIn
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       NotificationStatus
       NotificationContent
       NotifyTime

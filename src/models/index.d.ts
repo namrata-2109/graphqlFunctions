@@ -110,7 +110,7 @@ export declare class Workflow {
   readonly workflowOrders?: (Order | null)[] | null;
   readonly workflowdefinitions?: (WorkflowDefinition | null)[] | null;
   readonly WorkFlowJSON: string;
-  readonly WorkFlowDescription: string[];
+  readonly WorkFlowDescription: string;
   readonly CreatedBy: string;
   readonly OwnedBy: string;
   readonly createdAt?: string | null;
@@ -121,10 +121,11 @@ export declare class Workflow {
 
 export declare class WorkflowDefinition {
   readonly id: string;
-  readonly WorkflowDefinitionID: string;
+  readonly workflowdefinitionid: string;
   readonly NodeName: string;
   readonly NextNodeName: string[];
   readonly Description: string;
+  readonly WorkFlowName: string;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
   readonly workflowWorkflowdefinitionsId?: string | null;

@@ -105,6 +105,44 @@ export const syncUsers = /* GraphQL */ `
     }
   }
 `;
+export const userBySuperWisedID = /* GraphQL */ `
+  query UserBySuperWisedID(
+    $superwiserEmail: String!
+    $sortDirection: ModelSortDirection
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    userBySuperWisedID(
+      superwiserEmail: $superwiserEmail
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        email
+        name
+        isAdmin
+        phone
+        superwiserEmail
+        isApproved
+        isEmailApproved
+        isPhoneVerified
+        isGooleSignIn
+        isFacebookSignIn
+        isGeneralAuthSignIn
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getOrder = /* GraphQL */ `
   query GetOrder($orderID: String!) {
     getOrder(orderID: $orderID) {
@@ -122,6 +160,18 @@ export const getOrder = /* GraphQL */ `
       users {
         nextToken
         startedAt
+      }
+      relatedWorkFlow {
+        workflowName
+        WorkFlowJSON
+        WorkFlowDescription
+        CreatedBy
+        OwnedBy
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       createdAt
       updatedAt
@@ -312,7 +362,7 @@ export const getWorkflow = /* GraphQL */ `
         startedAt
       }
       WorkFlowJSON
-      Details
+      WorkFlowDescription
       CreatedBy
       OwnedBy
       createdAt
@@ -341,7 +391,7 @@ export const listWorkflows = /* GraphQL */ `
       items {
         workflowName
         WorkFlowJSON
-        Details
+        WorkFlowDescription
         CreatedBy
         OwnedBy
         createdAt
@@ -371,7 +421,7 @@ export const syncWorkflows = /* GraphQL */ `
       items {
         workflowName
         WorkFlowJSON
-        Details
+        WorkFlowDescription
         CreatedBy
         OwnedBy
         createdAt
@@ -388,10 +438,11 @@ export const syncWorkflows = /* GraphQL */ `
 export const getWorkflowDefinition = /* GraphQL */ `
   query GetWorkflowDefinition($id: ID!) {
     getWorkflowDefinition(id: $id) {
-      WorkflowDefinitionID
+      workflowdefinitionid
       NodeName
       NextNodeName
       Description
+      WorkFlowName
       id
       createdAt
       updatedAt
@@ -414,10 +465,11 @@ export const listWorkflowDefinitions = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
-        WorkflowDefinitionID
+        workflowdefinitionid
         NodeName
         NextNodeName
         Description
+        WorkFlowName
         id
         createdAt
         updatedAt
@@ -445,10 +497,47 @@ export const syncWorkflowDefinitions = /* GraphQL */ `
       lastSync: $lastSync
     ) {
       items {
-        WorkflowDefinitionID
+        workflowdefinitionid
         NodeName
         NextNodeName
         Description
+        WorkFlowName
+        id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        workflowWorkflowdefinitionsId
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const nodeByNodeandWorkFlowName = /* GraphQL */ `
+  query NodeByNodeandWorkFlowName(
+    $NodeName: String!
+    $WorkFlowName: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelWorkflowDefinitionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    nodeByNodeandWorkFlowName(
+      NodeName: $NodeName
+      WorkFlowName: $WorkFlowName
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        workflowdefinitionid
+        NodeName
+        NextNodeName
+        Description
+        WorkFlowName
         id
         createdAt
         updatedAt
@@ -465,6 +554,24 @@ export const syncWorkflowDefinitions = /* GraphQL */ `
 export const getUserNotifications = /* GraphQL */ `
   query GetUserNotifications($id: ID!) {
     getUserNotifications(id: $id) {
+      connectedUser {
+        email
+        name
+        isAdmin
+        phone
+        superwiserEmail
+        isApproved
+        isEmailApproved
+        isPhoneVerified
+        isGooleSignIn
+        isFacebookSignIn
+        isGeneralAuthSignIn
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       NotificationStatus
       NotificationContent
       NotifyTime

@@ -69,16 +69,17 @@ type Workflow @model @auth(rules: [{allow: public}]) {
   workflowOrders: [Order] @hasMany
   workflowdefinitions:[WorkflowDefinition] @hasMany
   WorkFlowJSON:AWSJSON!
-  WorkFlowDescription: [String!]!
+  WorkFlowDescription:String!
   CreatedBy: String!
   OwnedBy: String!
 }
 
 type WorkflowDefinition @model @auth(rules: [{allow: public}]) {
-  WorkflowDefinitionID: ID!
-  NodeName: String! 
+  workflowdefinitionid:String!
+  NodeName: String!  @index(name: "byNodeName", sortKeyFields: ["WorkFlowName"], queryField: "nodeByNodeandWorkFlowName")
   NextNodeName: [String!]!
   Description: String!
+  WorkFlowName:String!
 }
 
 type UserNotifications @model @auth(rules: [{ allow: public }]){

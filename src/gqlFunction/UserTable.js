@@ -49,8 +49,8 @@ export const getUserByEmail = async(userEmail) => {
 // create instance of userSupEmail in App.js
       export const getUserBySupMail = async (userSupEmail) => {
           try {
-              const userSupData = await API.graphql({ query: queries.getUser, variables: {superviserEmail: userSupEmail } });
-              console.log("User details by supervisor email", userSupData.data.getUser)
+              const userSupData = await API.graphql({ query: queries.userBySuperWisedID, variables: {superwiserEmail: userSupEmail } });
+              console.log("User details by supervisor email", userSupData.data.userBySuperWisedID)
           }
           catch (error){
               console.log("Error in getUser", error);

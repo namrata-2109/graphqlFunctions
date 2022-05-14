@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import UserTable from './gqlFunction/UserTable';
-import { createNewUser, getUserByEmail, deleteUserByMail, deleteUserBySupMail, updateUserInfo } from './gqlFunction/UserTable';
+import { createNewUser, getUserByEmail,getUserBySupMail, deleteUserByMail, deleteUserBySupMail, updateUserInfo } from './gqlFunction/UserTable';
 
 function App() {
   const createUserData = {
@@ -43,7 +43,7 @@ function App() {
     <div className="App">
       <button onClick={() => createNewUser(createUserData)}>Create new user</button><br/><br/>
       <button onClick={() => getUserByEmail(getDataViaMail.email)}>Get user by email</button><br/><br/>
-      <button onClick={() => getUserByEmail(getDataViaSuper.superwiserEmail)}>Get user by supermail</button><br/><br/>
+      <button onClick={() => getUserBySupMail(getDataViaSuper.superwiserEmail)}>Get user by supermail</button><br/><br/>
       <button onClick={() => deleteUserByMail(deleteEmail)}>Delete by email</button><br/><br/>
       <button onClick={() => deleteUserBySupMail(deleteSuperMail.superwiserEmail)}>Delete by supermail</button><br/><br/>
       

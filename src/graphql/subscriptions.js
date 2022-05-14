@@ -109,6 +109,18 @@ export const onCreateOrder = /* GraphQL */ `
         nextToken
         startedAt
       }
+      relatedWorkFlow {
+        workflowName
+        WorkFlowJSON
+        WorkFlowDescription
+        CreatedBy
+        OwnedBy
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
@@ -136,6 +148,18 @@ export const onUpdateOrder = /* GraphQL */ `
         nextToken
         startedAt
       }
+      relatedWorkFlow {
+        workflowName
+        WorkFlowJSON
+        WorkFlowDescription
+        CreatedBy
+        OwnedBy
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
@@ -162,6 +186,18 @@ export const onDeleteOrder = /* GraphQL */ `
       users {
         nextToken
         startedAt
+      }
+      relatedWorkFlow {
+        workflowName
+        WorkFlowJSON
+        WorkFlowDescription
+        CreatedBy
+        OwnedBy
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
       }
       createdAt
       updatedAt
@@ -254,7 +290,7 @@ export const onCreateWorkflow = /* GraphQL */ `
         startedAt
       }
       WorkFlowJSON
-      Details
+      WorkFlowDescription
       CreatedBy
       OwnedBy
       createdAt
@@ -278,7 +314,7 @@ export const onUpdateWorkflow = /* GraphQL */ `
         startedAt
       }
       WorkFlowJSON
-      Details
+      WorkFlowDescription
       CreatedBy
       OwnedBy
       createdAt
@@ -302,7 +338,7 @@ export const onDeleteWorkflow = /* GraphQL */ `
         startedAt
       }
       WorkFlowJSON
-      Details
+      WorkFlowDescription
       CreatedBy
       OwnedBy
       createdAt
@@ -316,10 +352,11 @@ export const onDeleteWorkflow = /* GraphQL */ `
 export const onCreateWorkflowDefinition = /* GraphQL */ `
   subscription OnCreateWorkflowDefinition {
     onCreateWorkflowDefinition {
-      WorkflowDefinitionID
+      workflowdefinitionid
       NodeName
       NextNodeName
       Description
+      WorkFlowName
       id
       createdAt
       updatedAt
@@ -333,10 +370,11 @@ export const onCreateWorkflowDefinition = /* GraphQL */ `
 export const onUpdateWorkflowDefinition = /* GraphQL */ `
   subscription OnUpdateWorkflowDefinition {
     onUpdateWorkflowDefinition {
-      WorkflowDefinitionID
+      workflowdefinitionid
       NodeName
       NextNodeName
       Description
+      WorkFlowName
       id
       createdAt
       updatedAt
@@ -350,10 +388,11 @@ export const onUpdateWorkflowDefinition = /* GraphQL */ `
 export const onDeleteWorkflowDefinition = /* GraphQL */ `
   subscription OnDeleteWorkflowDefinition {
     onDeleteWorkflowDefinition {
-      WorkflowDefinitionID
+      workflowdefinitionid
       NodeName
       NextNodeName
       Description
+      WorkFlowName
       id
       createdAt
       updatedAt
@@ -367,6 +406,24 @@ export const onDeleteWorkflowDefinition = /* GraphQL */ `
 export const onCreateUserNotifications = /* GraphQL */ `
   subscription OnCreateUserNotifications {
     onCreateUserNotifications {
+      connectedUser {
+        email
+        name
+        isAdmin
+        phone
+        superwiserEmail
+        isApproved
+        isEmailApproved
+        isPhoneVerified
+        isGooleSignIn
+        isFacebookSignIn
+        isGeneralAuthSignIn
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       NotificationStatus
       NotificationContent
       NotifyTime
@@ -383,6 +440,24 @@ export const onCreateUserNotifications = /* GraphQL */ `
 export const onUpdateUserNotifications = /* GraphQL */ `
   subscription OnUpdateUserNotifications {
     onUpdateUserNotifications {
+      connectedUser {
+        email
+        name
+        isAdmin
+        phone
+        superwiserEmail
+        isApproved
+        isEmailApproved
+        isPhoneVerified
+        isGooleSignIn
+        isFacebookSignIn
+        isGeneralAuthSignIn
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       NotificationStatus
       NotificationContent
       NotifyTime
@@ -399,6 +474,24 @@ export const onUpdateUserNotifications = /* GraphQL */ `
 export const onDeleteUserNotifications = /* GraphQL */ `
   subscription OnDeleteUserNotifications {
     onDeleteUserNotifications {
+      connectedUser {
+        email
+        name
+        isAdmin
+        phone
+        superwiserEmail
+        isApproved
+        isEmailApproved
+        isPhoneVerified
+        isGooleSignIn
+        isFacebookSignIn
+        isGeneralAuthSignIn
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       NotificationStatus
       NotificationContent
       NotifyTime

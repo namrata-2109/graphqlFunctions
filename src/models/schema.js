@@ -529,11 +529,10 @@ export const schema = {
                 },
                 "WorkFlowDescription": {
                     "name": "WorkFlowDescription",
-                    "isArray": true,
+                    "isArray": false,
                     "type": "String",
                     "isRequired": true,
-                    "attributes": [],
-                    "isArrayNullable": false
+                    "attributes": []
                 },
                 "CreatedBy": {
                     "name": "CreatedBy",
@@ -609,10 +608,10 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "WorkflowDefinitionID": {
-                    "name": "WorkflowDefinitionID",
+                "workflowdefinitionid": {
+                    "name": "workflowdefinitionid",
                     "isArray": false,
-                    "type": "ID",
+                    "type": "String",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -633,6 +632,13 @@ export const schema = {
                 },
                 "Description": {
                     "name": "Description",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "WorkFlowName": {
+                    "name": "WorkFlowName",
                     "isArray": false,
                     "type": "String",
                     "isRequired": true,
@@ -668,6 +674,17 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byNodeName",
+                        "queryField": "nodeByNodeandWorkFlowName",
+                        "fields": [
+                            "NodeName",
+                            "WorkFlowName"
+                        ]
+                    }
                 },
                 {
                     "type": "auth",
@@ -858,5 +875,5 @@ export const schema = {
         }
     },
     "nonModels": {},
-    "version": "7075a683482387132aaaa0335c09ab97"
+    "version": "ccf6d6b8b6c6d1da080e45922c0076ab"
 };
