@@ -1,4 +1,3 @@
-
 import { API } from 'aws-amplify';
 import * as mutations from '../graphql/mutations'
 import * as queries from '../graphql/queries';
@@ -25,16 +24,6 @@ export const deleteUserByMail = async (Mail) => {
     }
 }
 
-//create instance of supEmail in App.js
-export const deleteUserBySupMail = async (supEmail) => {
-    try {
-     const deleteTheUser = await API.graphql({ query: mutations.deleteUser, variables: { input: supEmail} });
-     console.log("Deleted User is ", deleteTheUser.data.deleteUser);
-         } catch (error) {
-             console.log("Error in deleting ", error);
-         }
-      }
-
 
 export const getUserByEmail = async(userEmail) => {
     try {
@@ -45,12 +34,37 @@ export const getUserByEmail = async(userEmail) => {
            console.log("Error in getUser");
           }
 }
+//create instance of supEmail in App.js
+export const getUserBySupMail = async (supEmail) => {
+    try {
+        const userSupData = await API.graphql({ query: queries.userBySuperWisedID, variables: {superwiserEmail: supEmail } });
+        console.log("User details by supervisor email", userSupData.data.userBySuperWisedID)
+         } 
+         catch (error){
+            console.log("Error in getUser", error);
+        }
+      }
 
 // create instance of userSupEmail in App.js
-      export const getUserBySupMail = async (userSupEmail) => {
+      export const deleteUserBySupMail = async (userSupEmail) => {
           try {
               const userSupData = await API.graphql({ query: queries.userBySuperWisedID, variables: {superwiserEmail: userSupEmail } });
               console.log("User details by supervisor email", userSupData.data.userBySuperWisedID)
+              const listItems = userSupData.data.userBySuperWisedID.items;
+              console.log(listItems.length)
+            for(var i=0 ; i<listItems.length ; i++)
+            {
+                console.log(i)
+                console.log(listItems[i].email)
+                const deleteList = {
+                    email: listItems[i].email,                  
+                    _version: listItems[i]._version
+                  }
+                const deleteTheUser = await API.graphql({ query: mutations.deleteUser, variables: { input: deleteList} });
+                console.log("Deleted User is ", deleteTheUser.data.deleteUser);
+            }
+           //   var len =  arrr.length;
+              
           }
           catch (error){
               console.log("Error in getUser", error);
