@@ -2,6 +2,9 @@ import { API } from 'aws-amplify';
 import * as mutations from '../graphql/mutations';
 import * as queries from '../graphql/queries';
 export const createTask = async (taskDetails) => {
+    if(taskDetails.TaskID=="" ||  taskDetails.taskStatus=="" || taskDetails.NodeID=="" || taskDetails.NextNodeName.length==0 || taskDetails.TaskAssignedTo=="" ||  taskDetails.isFirstUser=="" || taskDetails.TaskDescription=="" || taskDetails.UserFilePathList.length==0 || taskDetails.AssignedTimeStamp=="" || taskDetails.TaskCompletionTime=="" || taskDetails.DueDate==""){
+        throw new Error("null value not allowed")
+    }
     try {
         const addTask= await API.graphql({ query: mutations.createOrderTask, variables: { input: taskDetails } })
         console.log("Task has been added", addTask.data.createOrderTask);
@@ -11,6 +14,9 @@ export const createTask = async (taskDetails) => {
 }
 
 export  const updateTask = async(user)=>{
+    if(user.TaskID==""){
+        throw new Error("null value not allowed")
+    }
     try {
       console.log("Get user to update ")
         const updatedTask=await API.graphql({query:mutations.updateOrderTask,variables:{input: user}});
@@ -21,6 +27,9 @@ export  const updateTask = async(user)=>{
 }
 
 export const deleteTask = async (Mail) => {
+    if(Mail.TaskID==""){
+        throw new Error("null value not allowed")
+    }
     try {
         const deletedTask = await API.graphql({ query: mutations.deleteOrderTask, variables: {input: Mail} })
         console.log("Deleted Task is ", deletedTask.data.deleteOrderTask);
@@ -30,6 +39,9 @@ export const deleteTask = async (Mail) => {
 } 
 
 export const getTaskbyId = async(userEmail) => {
+    if(userEmail.TaskID==""){
+        throw new Error("null value not allowed")
+    }
     try {
             const getTask = await API.graphql({ query: queries.getOrderTask, variables: {TaskID: userEmail.TaskID }});
             console.log('Task to be read is', getTask.data.getOrderTask)
