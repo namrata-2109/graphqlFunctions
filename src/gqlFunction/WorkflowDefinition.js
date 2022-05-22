@@ -1,7 +1,6 @@
 import { API } from 'aws-amplify';
 import * as mutations from '../graphql/mutations'
 import * as queries from '../graphql/queries';
-import {validateEmail,validatePhone} from '../InputTest';
 
 export const addWorkFlowDefinition=async(addDefinition)=>{
   if(addDefinition.workflowdefinitionid=="" || addDefinition.NodeName=="" || addDefinition.NextNodeName=="" || addDefinition.Description=="" || typeof addDefinition.isRootNode!= "boolean" || addDefinition.WorkFlowName=="")
@@ -20,7 +19,7 @@ export const updatedefiniton=async(updateFlow)=>{
     }
     try {
       const updateWorkFlowDefinition=await API.graphql({query:mutations.updateWorkflowDefinition,variables:{input:updateFlow}});
-      console.log(updateWorkFlowDefinition);
+      console.log("Updated Definition",updateWorkFlowDefinition);
     } catch (error) {
       console.log("Error is ",error);
       throw new Error(error)
@@ -32,8 +31,8 @@ export const updatedefiniton=async(updateFlow)=>{
       throw new Error("null value not allowed")
       }
     try {
-      const deleteWorkFlowDefinition=await API.graphql({query:mutations.deleteWorkflowDefinition,variables:{id:deleteFlow.id}});
-      console.log(deleteWorkFlowDefinition);
+      const deleteWorkFlowDefinition=await API.graphql({query:mutations.deleteWorkflowDefinition,variables:{input: deleteFlow}});
+      console.log("Deleted Definition",deleteWorkFlowDefinition);
     } catch (error) {
       console.log("Error is ",error);
       throw new Error(error)

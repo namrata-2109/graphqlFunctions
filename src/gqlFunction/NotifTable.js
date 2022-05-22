@@ -46,3 +46,13 @@ export const deleteNotifByMail = async (Mail) => {
 
     }
 }
+
+export const listNotifications = async () => {
+    try{
+        const listNotifData=await API.graphql({query:queries.listUserNotifications});
+      console.log(listNotifData);
+    }catch(error){
+        console.log("Error in listing", error)
+        throw new Error(error)
+    }
+}

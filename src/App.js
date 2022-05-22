@@ -6,9 +6,8 @@ import * as queries from './graphql/queries';
 import './App.css';
 import UserTable from './gqlFunction/UserTable';
 import { createNewUser, getUserByEmail,getUserBySupMail, deleteUserByMail, deleteUserBySupMail, updateUserInfo } from './gqlFunction/UserTable';
-import WorkflowTable, { createNewNotif } from './gqlFunction/NotifTable';
-import { createNewWorkflow,updateNotif,deleteNotifByMail } from './gqlFunction/NotifTable';
-import {validateEmail,validatePhone} from './InputTest';
+import { createNewNotif,updateNotif,deleteNotifByMail, listNotifications } from './gqlFunction/NotifTable';
+import { validateEmail,validatePhone} from './InputTest';
 import { createTask, deleteTask, updateTask, getTaskbyId } from './gqlFunction/OrderTaskTable';
 import { createOrders, deleteOrders, updateOrders, getOrderbyIds } from './gqlFunction/OrderTable';
 import { addWorkFlow, deletWorkFlow, updateWorkflow, listWorkLFlow } from './gqlFunction/Workflow';
@@ -156,6 +155,10 @@ function App() {
     id: "4ww4-45qw-qw1w-45wq",
     workflowWorkflowdefinitionsId: "project"
   }
+  const deleteWfData = {
+    workflowName: "project",
+    _version: "2"
+  }
   const updateWorkflowDetails={
     workflowName: "project",
     SaveAsDraft: true,
@@ -163,6 +166,10 @@ function App() {
   const updateWorkflowDefinition={
     id: "4ww4-45qw-qw1w-45wq",
     NodeName: "Task 2",
+  }
+  const deleteDefData = {
+    id: "2bcf3ce4-4d02-45e1-94c2-f14ca7600634",
+    _version: "1"
   }
 
   return (
@@ -179,6 +186,7 @@ function App() {
       <button onClick={() => createNewNotif(createNotifData)}>Create new notif</button><br/><br/>
       <button onClick={() => updateNotif(updateNotifData)}>Update notif </button><br/><br/>
       <button onClick={() => deleteNotifByMail(deleteNotif)}>Delete notif </button><br/><br/>
+      <button onClick={() => listNotifications()}>List notifications </button><br/><br/>
 
       <h1>validity checks</h1>
       <button onClick={() => validateEmail(testEmail.email)}>test mail </button><br/><br/>
@@ -198,14 +206,14 @@ function App() {
 
       <h1>WF table</h1>
       <button onClick={()=>addWorkFlow(workflowDetails)}>Create workflow</button><br/><br/>
-      <button onClick={()=>deletWorkFlow()}>delete workflow</button><br/><br/>
+      <button onClick={()=>deletWorkFlow(deleteWfData)}>delete workflow</button><br/><br/>
       <button onClick={()=>updateWorkflow(updateWorkflowDetails)}>updated workflow</button><br/><br/>
       <button onClick={()=>listWorkLFlow()}>list workflow</button><br/><br/>
 
       <h1>WFD table</h1>
       <button onClick={()=>addWorkFlowDefinition(workflowdefinition)}>Create workflow Definition</button><br/><br/>
       <button onClick={()=>updatedefiniton(updateWorkflowDefinition)}>update workflow Definition</button><br/><br/>
-      <button onClick={()=>deleteDefinition()}>delete workflow Definition</button><br/><br/>
+      <button onClick={()=>deleteDefinition(deleteDefData)}>delete workflow Definition</button><br/><br/>
       <button onClick={()=>listDefintions()}>list workflow Definition</button><br/><br/>
 
 

@@ -1,7 +1,6 @@
 import { API } from 'aws-amplify';
 import * as mutations from '../graphql/mutations';
 import * as queries from '../graphql/queries';
-import {listValueidateEmail,validatePhone} from '../InputTest';
 
 export const addWorkFlow=async(addValue)=>{
   if(addValue.workflowName=="" || addValue.WorkFlowJSON=="" || addValue.WorkFlowDescription=="" || typeof addValue.SaveAsDraft!= "boolean"){
@@ -22,7 +21,7 @@ export const addWorkFlow=async(addValue)=>{
     }
   try {
       const updatedData=await API.graphql({query:mutations.updateWorkflow,variables:{input:updateValue}});
-      console.log(updatedData);
+      console.log("Updated Workflow", updatedData);
     } catch (error) {
       console.log("Error is ",error);
       throw new Error(error)
@@ -34,8 +33,8 @@ export const addWorkFlow=async(addValue)=>{
       throw new Error("null value not allowed for orderID")
     }
     try {
-      const deletedItem=await API.graphql({query:mutations.deleteWorkflow,variables:{id: deleteValue.id}})
-      console.log(deletedItem);
+      const deletedItem=await API.graphql({query:mutations.deleteWorkflow,variables:{input: deleteValue}})
+      console.log("workflow deleted", deletedItem);
     } catch (error) {
       console.log("Error is ",error);
       throw new Error(error)
