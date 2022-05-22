@@ -16,96 +16,7 @@ import {addWorkFlowDefinition ,updatedefiniton ,deleteDefinition , listDefintion
 
 
 function App() {
-  const workflowDetails={
-    workflowName: "projectsss",
-    WorkFlowJSON: "{\"a\":1, \"b\":3, \"string\": 234}",
-    WorkFlowDescription: "new project", 
-    SaveAsDraft: false,
-    CreatedBy: "chirag tak",
-    OwnedBy: "chirag tak"
-  }
-  const workflowdefinition={
-    workflowdefinitionid: "first definition",
-    NodeName: "Task 1",
-    NextNodeName: "[Task 2,Task 3]",
-    Description: "Hello new definition",
-    isRootNode: true,
-    WorkFlowName: "project2",
-    id: "4ww4-45qw-qw1w-45wq",
-    workflowWorkflowdefinitionsId: "project"
-  }
-  const updateWorkflowDetails={
-    workflowName: "project",
-    SaveAsDraft: true,
-  }
-  const updateWorkflowDefinition={
-    id: "4ww4-45qw-qw1w-45wq",
-    NodeName: "Task 2",
-  }
-  /*const addWorkFlow=async()=>{
-    try {
-      const workFlowData=await API.graphql({query:mutations.createWorkflow,variables:{input:workflowDetails}});
-      console.log(workFlowData);
-    } catch (error) {
-      console.log("error is ",error);
-    }
-  }
-  const updateWorkflow=async()=>{
-    try {
-      const updatedData=await API.graphql({query:mutations.updateWorkflow,variables:{input:updateWorkflowDetails}});
-      console.log(updatedData);
-    } catch (error) {
-      console.log("Error is ",error);
-    }
-  }
-  const deletWorkFlow=async()=>{
-    try {
-      const deletedItem=await API.graphql({query:mutations.deleteWorkflow,variables:{workflowName: "project"}})
-      console.log(deletedItem);
-    } catch (error) {
-      console.log("Error is ",error);
-    }
-  }
-  const addWorkFlowDefinition=async()=>{
-    try {
-      const workFlowDefinitionData=await API.graphql({query:mutations.createWorkflowDefinition,variables:{input:workflowdefinition}});
-      console.log(workFlowDefinitionData);
-    } catch (error) {
-      console.log("Error is ",error);
-    }
-  }
-  const updatedefiniton=async()=>{
-    try {
-      const updateWorkFlowDefinition=await API.graphql({query:mutations.updateWorkflowDefinition,variables:{input:updateWorkflowDefinition}});
-      console.log(updateWorkFlowDefinition);
-    } catch (error) {
-      console.log("Error is ",error);
-    }
-  }
-  const deleteDefinition=async()=>{
-    try {
-      const deleteWorkFlowDefinition=await API.graphql({query:mutations.deleteWorkflowDefinition,variables:{id: "4ww4-45qw-qw1w-45wq"}});
-      console.log(deleteWorkFlowDefinition);
-    } catch (error) {
-      console.log("Error is ",error);
-    }
-  }
-  const listWorkLFlow=async()=>{
-    try {
-      const list=await API.graphql({query:queries.listWorkflows});
-      console.log(list);
-    } catch (error) {
-      console.log("error is ",error);
-    }
-  }
-  const listDefintions=async()=>{
-    try {
-      const listDefintion=await API.graphql({query:queries.listWorkflowDefinitions});
-      console.log(listDefintion);
-    } catch (error) {
-      console.log("error is ",error);
-    }
-  }*/
+  
   const createNotifData = {
     userNotificationsId:"xyz@gmail.com",
     NotificationStatus:'abc',
@@ -227,6 +138,33 @@ function App() {
   const getOrderviaID = {
     orderID: 'sjfaab',
   }
+  const workflowDetails={
+    workflowName: "projectsss",
+    WorkFlowJSON: "{\"a\":1, \"b\":3, \"string\": 234}",
+    WorkFlowDescription: "new project", 
+    SaveAsDraft: false,
+    CreatedBy: "nam",
+    OwnedBy: "nam"
+  }
+  const workflowdefinition={
+    workflowdefinitionid: "first definition",
+    NodeName: "Task 1",
+    NextNodeName: "[Task 2,Task 3]",
+    Description: "Hello new definition",
+    isRootNode: true,
+    WorkFlowName: "project2",
+    id: "4ww4-45qw-qw1w-45wq",
+    workflowWorkflowdefinitionsId: "project"
+  }
+  const updateWorkflowDetails={
+    workflowName: "project",
+    SaveAsDraft: true,
+  }
+  const updateWorkflowDefinition={
+    id: "4ww4-45qw-qw1w-45wq",
+    NodeName: "Task 2",
+  }
+
   return (
     <div className="App">
       <h1>User table</h1>
@@ -259,16 +197,16 @@ function App() {
       <button onClick={() => getOrderbyIds(getOrderviaID)}>get order</button><br/><br/>
 
       <h1>WF table</h1>
-      <button onClick={()=>addWorkFlow(workflowDetails)}>Create workflow</button>
-      <button onClick={()=>deletWorkFlow()}>delete workflow</button>
-      <button onClick={()=>updateWorkflow(updateWorkflowDetails)}>updated workflow</button>
-      <button onClick={()=>listWorkLFlow()}>list workflow</button>
+      <button onClick={()=>addWorkFlow(workflowDetails)}>Create workflow</button><br/><br/>
+      <button onClick={()=>deletWorkFlow()}>delete workflow</button><br/><br/>
+      <button onClick={()=>updateWorkflow(updateWorkflowDetails)}>updated workflow</button><br/><br/>
+      <button onClick={()=>listWorkLFlow()}>list workflow</button><br/><br/>
 
       <h1>WFD table</h1>
-      <button onClick={()=>addWorkFlowDefinition(workflowdefinition)}>Create workflow Definition</button>
-      <button onClick={()=>updatedefiniton(updateWorkflowDefinition)}>update workflow Definition</button>
-      <button onClick={()=>deleteDefinition()}>delete workflow Definition</button>
-      <button onClick={()=>listDefintions()}>list workflow Definition</button>
+      <button onClick={()=>addWorkFlowDefinition(workflowdefinition)}>Create workflow Definition</button><br/><br/>
+      <button onClick={()=>updatedefiniton(updateWorkflowDefinition)}>update workflow Definition</button><br/><br/>
+      <button onClick={()=>deleteDefinition()}>delete workflow Definition</button><br/><br/>
+      <button onClick={()=>listDefintions()}>list workflow Definition</button><br/><br/>
 
 
     </div>

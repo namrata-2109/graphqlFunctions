@@ -3,9 +3,10 @@ import * as mutations from '../graphql/mutations'
 import * as queries from '../graphql/queries';
 import {validateEmail,validatePhone} from '../InputTest';
 
-export const addWorkFlowDefinition=async(val)=>{
+export const addWorkFlowDefinition=async(addDefinition)=>{
+  if(addDefinition.workflowdefinitionid=="" || addDefinition.NodeName=="" || addDefinition.NextNodeName=="" || addDefinition.Description=="" || typeof addDefinition.isRootNode!= "boolean" || addDefinition.WorkFlowName=="")
     try {
-      const workFlowDefinitionData=await API.graphql({query:mutations.createWorkflowDefinition,variables:{input:val}});
+      const workFlowDefinitionData=await API.graphql({query:mutations.createWorkflowDefinition,variables:{input:addDefinition}});
       console.log(workFlowDefinitionData);
     } catch (error) {
       console.log("Error is ",error);
@@ -13,9 +14,12 @@ export const addWorkFlowDefinition=async(val)=>{
 
     }
   }
-export const updatedefiniton=async(val)=>{
+export const updatedefiniton=async(updateFlow)=>{
+  if(updateFlow.id=="" ){
+    throw new Error("null value not allowed")
+    }
     try {
-      const updateWorkFlowDefinition=await API.graphql({query:mutations.updateWorkflowDefinition,variables:{input:val}});
+      const updateWorkFlowDefinition=await API.graphql({query:mutations.updateWorkflowDefinition,variables:{input:updateFlow}});
       console.log(updateWorkFlowDefinition);
     } catch (error) {
       console.log("Error is ",error);
@@ -23,9 +27,12 @@ export const updatedefiniton=async(val)=>{
 
     }
   }
-  export const deleteDefinition=async(val)=>{
+  export const deleteDefinition=async(deleteFlow)=>{
+    if(deleteFlow.id=="" ){
+      throw new Error("null value not allowed")
+      }
     try {
-      const deleteWorkFlowDefinition=await API.graphql({query:mutations.deleteWorkflowDefinition,variables:{id:val.id}});
+      const deleteWorkFlowDefinition=await API.graphql({query:mutations.deleteWorkflowDefinition,variables:{id:deleteFlow.id}});
       console.log(deleteWorkFlowDefinition);
     } catch (error) {
       console.log("Error is ",error);
@@ -33,7 +40,7 @@ export const updatedefiniton=async(val)=>{
 
     }
   }
-  export const listDefintions=async(val)=>{
+  export const listDefintions=async(listFlow)=>{
     try {
       const listDefintion=await API.graphql({query:queries.listWorkflowDefinitions});
       console.log(listDefintion);
