@@ -8,7 +8,7 @@ import UserTable from './gqlFunction/UserTable';
 import { createNewUser, getUserByEmail,getUserBySupMail, deleteUserByMail, deleteUserBySupMail, updateUserInfo } from './gqlFunction/UserTable';
 import WorkflowTable, { createNewNotif } from './gqlFunction/NotifTable';
 import { createNewWorkflow,updateNotif,deleteNotifByMail } from './gqlFunction/NotifTable';
-import {emailValidation,phoneValidation} from './InputTest';
+import {validateEmail,validatePhone} from './InputTest';
 import { createTask, deleteTask, updateTask, getTaskbyId } from './gqlFunction/OrderTaskTable';
 import { createOrders, deleteOrders, updateOrders, getOrderbyIds } from './gqlFunction/OrderTable';
 import { addWorkFlow, deletWorkFlow, updateWorkflow, listWorkLFlow } from './gqlFunction/Workflow';
@@ -243,8 +243,8 @@ function App() {
       <button onClick={() => deleteNotifByMail(deleteNotif)}>Delete notif </button><br/><br/>
 
       <h1>validity checks</h1>
-      <button onClick={() => emailValidation(testEmail.email)}>test mail </button><br/><br/>
-      <button onClick={() => phoneValidation(createUserData.phone)}>test number </button><br/><br/>
+      <button onClick={() => validateEmail(testEmail.email)}>test mail </button><br/><br/>
+      <button onClick={() => validatePhone(createUserData.phone)}>test number </button><br/><br/>
 
       <h1>order task</h1>
       <button onClick={() => createTask(createTaskData)}>Create new Task</button><br/><br/>

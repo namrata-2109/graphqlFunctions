@@ -10,6 +10,8 @@ export const createOrders = async (taskDetails) => {
         console.log("Order has been added", addOrder.data.createOrder);
     } catch (error) {
         console.log("error in creating ", error);
+        throw new Error(error)
+
     }
 }
 
@@ -24,6 +26,8 @@ export  const updateOrders = async(user)=>{
         console.log("Updated Order is ",updatedOrder.data.updateOrder);
     }catch (error) {
         console.log("Error in updating ",error);
+        throw new Error(error)
+
     }
 }
 
@@ -36,6 +40,8 @@ export const deleteOrders = async (Mail) => {
         console.log("Deleted Order is ", deletedOrder.data.deleteOrder);
     } catch (error) {
         console.log("Error in deleting ", error);
+        throw new Error(error)
+
     }
 } 
 
@@ -49,5 +55,7 @@ export const getOrderbyIds = async(userEmail) => {
     }
     catch(error) {
            console.log("Error in gettask",error);
+           throw new Error(error)
+
           }
 }

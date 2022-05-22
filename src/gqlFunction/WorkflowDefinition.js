@@ -1,7 +1,7 @@
 import { API } from 'aws-amplify';
 import * as mutations from '../graphql/mutations'
 import * as queries from '../graphql/queries';
-import {emailValidation,phoneValidation} from '../InputTest';
+import {validateEmail,validatePhone} from '../InputTest';
 
 export const addWorkFlowDefinition=async(val)=>{
     try {
@@ -9,6 +9,8 @@ export const addWorkFlowDefinition=async(val)=>{
       console.log(workFlowDefinitionData);
     } catch (error) {
       console.log("Error is ",error);
+      throw new Error(error)
+
     }
   }
 export const updatedefiniton=async(val)=>{
@@ -17,6 +19,8 @@ export const updatedefiniton=async(val)=>{
       console.log(updateWorkFlowDefinition);
     } catch (error) {
       console.log("Error is ",error);
+      throw new Error(error)
+
     }
   }
   export const deleteDefinition=async(val)=>{
@@ -25,6 +29,8 @@ export const updatedefiniton=async(val)=>{
       console.log(deleteWorkFlowDefinition);
     } catch (error) {
       console.log("Error is ",error);
+      throw new Error(error)
+
     }
   }
   export const listDefintions=async(val)=>{
@@ -33,5 +39,7 @@ export const updatedefiniton=async(val)=>{
       console.log(listDefintion);
     } catch (error) {
       console.log("error is ",error);
+      throw new Error(error)
+
     }
   }

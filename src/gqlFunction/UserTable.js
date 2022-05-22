@@ -2,7 +2,7 @@
 import { API } from 'aws-amplify';
 import * as mutations from '../graphql/mutations'
 import * as queries from '../graphql/queries';
-import {emailValidation,phoneValidation} from '../InputTest';
+import {validateEmail,validatePhone} from '../InputTest';
 
 // email, name, isAdmin, phone, superviserEmail, isApproved, isEmailApproved, isPhoneVerified, isGooleSignIn,isFacebookSignIn ,isGeneralAuthSignIn
 
@@ -11,30 +11,34 @@ import {emailValidation,phoneValidation} from '../InputTest';
     if(userDetails.email=="" || userDetails.name=="" || typeof userDetails.isAdmin!= "boolean" || userDetails.phone=="" || userDetails.superwiserEmail=="" || typeof userDetails.isApproved!="boolean" || typeof userDetails.isEmailApproved!="boolean" || typeof userDetails.isPhoneVerified!="boolean" || typeof userDetails.isGooleSignIn!="boolean" || typeof userDetails.isFacebookSignIn!="boolean" || typeof userDetails.isGeneralAuthSignIn!="boolean"){
         throw new Error("null value not allowed")
         }
-    emailValidation(userDetails.email)
-    phoneValidation(userDetails.phone)
+        validateEmail(userDetails.email)
+        validatePhone(userDetails.phone)
      try {
          const addUser = await API.graphql({ query: mutations.createUser, variables: { input: userDetails } })
          console.log("User has been added", addUser.data.createUser);
      } catch (error) {
          console.log("error in creating ", error);
+         throw new Error(error)
+
      }
  }
 
 //create instance of Mail in App.js
 export const deleteUserByMail = async (Mail) => {
-    emailValidation(Mail.email)
+    validateEmail(Mail.email)
     try {
         const deletedUser = await API.graphql({ query: mutations.deleteUser, variables: {input: Mail} })
         console.log("Deleted User is ", deletedUser.data.deleteUser);
     } catch (error) {
         console.log("Error in deleting ", error);
+        throw new Error(error)
+
     }
 }
 
 //create instance of supEmail in App.js
 export const deleteUserBySupMail = async (userSupEmail) => {
-    emailValidation(userSupEmail.superwiserEmail)
+    validateEmail(userSupEmail.superwiserEmail)
 
     try {
         const userSupData = await API.graphql({ query: queries.userBySuperWisedID, variables: {superwiserEmail: userSupEmail } });
@@ -57,13 +61,15 @@ export const deleteUserBySupMail = async (userSupEmail) => {
     }
     catch (error){
         console.log("Error in getUser", error);
+        throw new Error(error)
+
     }
 }
 
 
 
 export const getUserByEmail = async(userEmail) => {
-    emailValidation(userEmail)
+    validateEmail(userEmail)
 
     try {
             const userData = await API.graphql({ query: queries.getUser, variables: {email: userEmail }});
@@ -71,14 +77,16 @@ export const getUserByEmail = async(userEmail) => {
             console.log(x)
             console.log("User details by email", userData.data.getUser)
     }
-    catch {
+    catch(error) {
            console.log("Error in getUser");
+           throw new Error(error)
+
           }
 }
 
 // create instance of userSupEmail in App.js
       export const getUserBySupMail = async (userSupEmail) => {
-        emailValidation(userSupEmail)
+        validateEmail(userSupEmail)
 
           try {
               const userSupData = await API.graphql({ query: queries.userBySuperWisedID, variables: {superwiserEmail: userSupEmail } });
@@ -86,12 +94,14 @@ export const getUserByEmail = async(userEmail) => {
           }
           catch (error){
               console.log("Error in getUser", error);
+              throw new Error(error)
+
           }
       }
 
 // create instance of updatedData in App.js
      export  const updateUserInfo = async(user)=>{
-        emailValidation(user.email)
+        validateEmail(user.email)
       try {
         console.log("Get user to update ")
           const getUpdateUser = await API.graphql({query:queries.getUser, variables:{email: user.email}})
@@ -100,6 +110,8 @@ export const getUserByEmail = async(userEmail) => {
           console.log("Updated user is ",updatedUser.data.updateUser);
       }catch (error) {
           console.log("Error in updating ",error);
+          throw new Error(error)
+
       }
   }
 
