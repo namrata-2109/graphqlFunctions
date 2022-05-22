@@ -7,6 +7,7 @@ export const createTask = async (taskDetails) => {
         console.log("Task has been added", addTask.data.createOrderTask);
     } catch (error) {
         console.log("error in creating ", error);
+        
     }
 }
 
