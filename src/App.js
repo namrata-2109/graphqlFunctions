@@ -11,10 +11,13 @@ import { createNewWorkflow,updateNotif,deleteNotifByMail } from './gqlFunction/N
 import {emailValidation,phoneValidation} from './InputTest';
 import { createTask, deleteTask, updateTask, getTaskbyId } from './gqlFunction/OrderTaskTable';
 import { createOrders, deleteOrders, updateOrders, getOrderbyIds } from './gqlFunction/OrderTable';
+import { addWorkFlow, deletWorkFlow, updateWorkflow, listWorkLFlow } from './gqlFunction/Workflow';
+import {addWorkFlowDefinition ,updatedefiniton ,deleteDefinition , listDefintions } from './gqlFunction/WorkflowDefinition';
+
 
 function App() {
   const workflowDetails={
-    workflowName: "project",
+    workflowName: "projectsss",
     WorkFlowJSON: "{\"a\":1, \"b\":3, \"string\": 234}",
     WorkFlowDescription: "new project", 
     SaveAsDraft: false,
@@ -27,7 +30,7 @@ function App() {
     NextNodeName: "[Task 2,Task 3]",
     Description: "Hello new definition",
     isRootNode: true,
-    WorkFlowName: "project",
+    WorkFlowName: "project2",
     id: "4ww4-45qw-qw1w-45wq",
     workflowWorkflowdefinitionsId: "project"
   }
@@ -39,7 +42,7 @@ function App() {
     id: "4ww4-45qw-qw1w-45wq",
     NodeName: "Task 2",
   }
-  const addWorkFlow=async()=>{
+  /*const addWorkFlow=async()=>{
     try {
       const workFlowData=await API.graphql({query:mutations.createWorkflow,variables:{input:workflowDetails}});
       console.log(workFlowData);
@@ -102,7 +105,7 @@ function App() {
     } catch (error) {
       console.log("error is ",error);
     }
-  }
+  }*/
   const createNotifData = {
     userNotificationsId:"xyz@gmail.com",
     NotificationStatus:'abc',
@@ -256,14 +259,14 @@ function App() {
       <button onClick={() => getOrderbyIds(getOrderviaID)}>get order</button><br/><br/>
 
       <h1>WF table</h1>
-      <button onClick={()=>addWorkFlow()}>Create workflow</button>
+      <button onClick={()=>addWorkFlow(workflowDetails)}>Create workflow</button>
       <button onClick={()=>deletWorkFlow()}>delete workflow</button>
-      <button onClick={()=>updateWorkflow()}>updated workflow</button>
+      <button onClick={()=>updateWorkflow(updateWorkflowDetails)}>updated workflow</button>
       <button onClick={()=>listWorkLFlow()}>list workflow</button>
 
       <h1>WFD table</h1>
-      <button onClick={()=>addWorkFlowDefinition()}>Create workflow Definition</button>
-      <button onClick={()=>updatedefiniton()}>update workflow Definition</button>
+      <button onClick={()=>addWorkFlowDefinition(workflowdefinition)}>Create workflow Definition</button>
+      <button onClick={()=>updatedefiniton(updateWorkflowDefinition)}>update workflow Definition</button>
       <button onClick={()=>deleteDefinition()}>delete workflow Definition</button>
       <button onClick={()=>listDefintions()}>list workflow Definition</button>
 
