@@ -14,6 +14,8 @@ import { addWorkFlow, deletWorkFlow, updateWorkflow, listWorkLFlow } from './gql
 import {addWorkFlowDefinition ,updatedefiniton ,deleteDefinition , listDefintions } from './gqlFunction/WorkflowDefinition';
 import {createNotifData,updateNotifData,deleteNotif} from './gqlFunctionTest/NotifTableTest';
 import {createOrderData,updateOrderData,deleteOrderData,getOrderviaID} from './gqlFunctionTest/OrderTableTest';
+import {createTaskData,updateTaskData,deleteTaskData,getTaskviaID} from './gqlFunctionTest/OrderTaskTableTest';
+
 
 
 function App() {
@@ -76,7 +78,7 @@ function App() {
     email: "gshlga@gmail.com"
   }
 
-  const createTaskData = {
+  /*const createTaskData = {
     TaskID: 'abghcd',
     taskStatus: 'TASK_FORWARD',
     NodeID: 'sjrjsj',
@@ -109,7 +111,7 @@ function App() {
 
   const getTaskviaID = {
     TaskID: 'neiloo'
-  }
+  }*/
 
   /*const createOrderData = {
   orderID: 'sjfGSzhaab',
