@@ -12,11 +12,13 @@ import { createTask, deleteTask, updateTask, getTaskbyId } from './gqlFunction/O
 import { createOrders, deleteOrders, updateOrders, getOrderbyIds } from './gqlFunction/OrderTable';
 import { addWorkFlow, deletWorkFlow, updateWorkflow, listWorkLFlow } from './gqlFunction/Workflow';
 import {addWorkFlowDefinition ,updatedefiniton ,deleteDefinition , listDefintions } from './gqlFunction/WorkflowDefinition';
+import {createNotifData,updateNotifData,deleteNotif} from './gqlFunctionTest/NotifTableTest';
+import {createOrderData,updateOrderData,deleteOrderData,getOrderviaID} from './gqlFunctionTest/OrderTableTest';
 
 
 function App() {
   
-  const createNotifData = {
+  /*const createNotifData = {
     userNotificationsId:"xyz@gmail.com",
     NotificationStatus:'abc',
     NotificationContent:'hdzhzd',
@@ -33,9 +35,9 @@ function App() {
   const deleteNotif={
     id:"3e2f5dbe-8f8d-4cb7-86b9-67356fed7da3",
     _version: "1"
-  }
+  }*/
   const createUserData = {
-    email: "xyzyz@gmail.com",
+    email: "xyzyzzz@gmail.com",
     name: "Nifaz",
     isAdmin: false,
     phone: "8888888888",
@@ -48,7 +50,7 @@ function App() {
     isGeneralAuthSignIn: false
   };
   const getDataViaMail = {
-    email: "xbcd@gmail.com"
+    email: "abcd"
   }
   const getDataViaSuper = {
     superwiserEmail: "gourab@gmail.com"
@@ -109,7 +111,7 @@ function App() {
     TaskID: 'neiloo'
   }
 
-  const createOrderData = {
+  /*const createOrderData = {
   orderID: 'sjfGSzhaab',
   description: 'is fine',
   currentStatus: 'ORDER_CREATED',
@@ -136,7 +138,7 @@ function App() {
 
   const getOrderviaID = {
     orderID: 'sjfaab',
-  }
+  }*/
   const workflowDetails={
     workflowName: "projectsss",
     WorkFlowJSON: "{\"a\":1, \"b\":3, \"string\": 234}",
